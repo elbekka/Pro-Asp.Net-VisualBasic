@@ -36,8 +36,8 @@ End Code
                     <div class="form-group">
                         <label>Will you attend?</label>
                         @Html.DropDownListFor(Function(m) m.WillAttend, New SelectListItem() {
-                                           New SelectListItem With {.Text = "Yes, I'll be there", .Value = Boolean.TrueString},
-                                           New SelectListItem With {.Text = "No, I can't come", .Value = Boolean.FalseString}}, "Choose an option")
+                                     New SelectListItem With {.Text = "Yes, I'll be there", .Value = Boolean.TrueString},
+                                     New SelectListItem With {.Text = "No, I can't come", .Value = Boolean.FalseString}}, "Choose an option", New With {.class = "form-control"})
                         <br />
                         <input class="btn btn-success" type="submit" value="Submit RSVP" />
                     </div>
