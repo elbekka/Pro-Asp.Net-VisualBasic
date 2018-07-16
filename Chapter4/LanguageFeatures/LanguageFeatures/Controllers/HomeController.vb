@@ -41,5 +41,33 @@ Namespace Controllers
             Dim cartTotal As Decimal = cart.TotalPrice()
             Return View("Result", CObj(String.Format("Total: {0}", cartTotal)))
         End Function
+        Public Function UseExtensionEnumerable() As ViewResult
+            Dim products As IEnumerable(Of Product) = New ShoppingCart With {.Products = New List(Of Product) From {
+                                                                New Product With {.Name = "kayak", .Price = 275D},
+                                                                New Product With {.Name = "Lifejacket", .Price = 48.95D},
+                                                                New Product With {.Name = "Soccer ball", .Price = 19.5D},
+                                                                New Product With {.Name = "Corner flag", .Price = 34.95D}}}
+            'Create and populate an array of Product objects
+            Dim productArray = {New Product With {.Name = "kayak", .Price = 275D},
+                                New Product With {.Name = "Lifejacket", .Price = 48.95D},
+                                New Product With {.Name = "Soccer ball", .Price = 19.5D},
+                                New Product With {.Name = "Corner flag", .Price = 34.95D}}
+            'Get the total value of product in cart
+            Dim cartTotal As Decimal = products.TotalPrice()
+            Dim arrayTotal As Decimal = productArray.TotalPrice()
+            Return View("Result", CObj(String.Format("Cart Total : {0},Array Total : {1}", cartTotal, arrayTotal)))
+        End Function
+        Public Function UseFilterExtensionMethod() As ViewResult
+            Dim products As IEnumerable(Of Product) = New ShoppingCart With {.Products = New List(Of Product) From {
+                                                                New Product With {.Name = "kayak", .Price = 275D, .Category = "Soccer"},
+                                                                New Product With {.Name = "Lifejacket", .Price = 48.95D, .Category = "Watersports"},
+                                                                New Product With {.Name = "Soccer ball", .Price = 19.5D, .Category = "Soccer"},
+                                                                New Product With {.Name = "Corner flag", .Price = 34.95D, .Category = "Soccer"}}}
+            Dim total As Decimal = 0
+            For Each prod As Product In products.FilterByCategory("Soccer")
+                total += prod.Price
+            Next
+            Return View("Result", CObj(String.Format("Total:{0}", total)))
+        End Function
     End Class
 End Namespace

@@ -1,4 +1,4 @@
-﻿@Model String
+﻿
 @Code
     Layout = Nothing
 End Code
