@@ -4,7 +4,7 @@ Namespace LanguageFeatures.Models
         Private _name As String
         Public Property Name() As String
             Get
-                Return _name + ProductID
+                Return _name & ProductID
 
             End Get
             Set(ByVal value As String)
